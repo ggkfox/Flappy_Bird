@@ -1,17 +1,24 @@
 var bird;
-var pipe;
+var pipes = [];
 function setup() {
     createCanvas(400, 600);
     bird = new Bird();
-    pipe = new Pipe();
+    pipes.push(new Pipe());
 }
 
 function draw() {
     background(0);
     bird.update();
     bird.show();
-    pipe.update();
-    pipe.show();
+
+    if (frameCount % 100 == 0) {
+        pipes.push(new Pipe());
+    }
+
+    for (var i = 0; i < pipes.length; i++) {
+        pipes[i].show();
+        pipes[i].update();
+    }
 }
 
 function keyPressed(){
